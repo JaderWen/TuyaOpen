@@ -200,7 +200,7 @@
 - 音频/视频/文本 AI 多模态交互
 - 云端AI Workflow 定制能力
 - AI Agent 设备自控/他控，Function-Call 能力
-- MCP（Model Context Protocol）自定义 MCP Server 能力
+- MCP（Model Context Protocol）自定义 MCP Server 能力 [Tuya MCP SDK](https://github.com/tuya/tuya-mcp-sdk)
 
 **算法/引擎：**
 - 端侧 3A 算法（VAD/KWS/AEC/ANR/AGC 等），为端侧拾音提供良好的声学条件
@@ -290,6 +290,7 @@ App 端发送音量控制指令 → 云端通过 MQTT 下发 DP 数据点
 
 ## 涂丫丫 AI 宠物
 ![AI Pet](./img/screen-1.png)
+<img src="./img/screen/main2.jpg" width="280px"/>
 体验新一代虚拟宠物！涂鸦 AI 宠物主机演示展示了先进的音频、视觉、文本大模型（LLM）功能，让您的数字伙伴通过自然语音对话和情感感知与您互动。享受"类拓麻歌子-电子宠物"式的冒险，您的宠物会根据您的情绪和语音做出回应，带来真正沉浸式且有趣的虚拟陪伴体验。
 - 摇杆手柄交互
 - 语音模态交互
@@ -317,42 +318,61 @@ App 端发送音量控制指令 → 云端通过 MQTT 下发 DP 数据点
 
 
 ## 贪吃蛇小游戏 Demo
-LVGL实现
+该 Demo 展示了在T5 Pocket硬件上利用 LVGL UI 框架实现的经典贪吃蛇（Snake）小游戏。玩家通过摇杆控制贪吃蛇的移动方向，在狭小的黑白显示屏上体验极简风格的怀旧游戏乐趣。
+- **操作说明**：玩家可使用摇杆操控贪吃蛇上下左右移动，尽量吃到屏幕上的“食物”，每当吃到一个食物蛇身会变长一节，游戏难度随长度加大。  
+<img src="./img/screen/snake.jpg" width="280px"/>
+  
 
 ## Dino Jump小游戏 Demo
-LVGL实现经典跳跳龙
+这是一个"跳跳龙"（Dino Jump/Chrome小恐龙）式跑酷游戏，同样基于LVGL渲染引擎实现。玩家需要操控恐龙（或小动物）持续奔跑，灵活跳跃躲避障碍物。  
+<img src="./img/screen/ducky_game.jpg" width="280px"/>
+
+
 
 ### 摄像头 Demo
 本 Demo 展示了如何将摄像头采集的彩色图像实时转换并显示到单色 LCD 屏幕上。由于本设备屏幕为单色（黑白）且不支持灰阶显示，图像处理部分采用了经典的“抖动算法”（Dithering Algorithm），常用的有 Floyd–Steinberg、Bayer 抖动等。该算法可将采集到的彩色图像信息以视觉误差扩散的方式有机分布在屏幕像素上，从而在黑白显示屏上呈现出丰富的层次感，弱化失真与细节损失。
+<img src="./img/screen/camera3.jpg" width="280px"/>
 
 
 ### 加速度测试水平仪 Demo
-
+BMI270传感器读出，水平渲染Demo  
+<img src="./img/screen/level.jpg" width="280px"/>
 
 ### 电子书Demo
+SD卡读取TXT示例，EPUB兼容和字体抗锯齿也有待优化  
+<img src="./img/screen/ebook.jpg" width="280px"/>
 
+### 虚拟键盘组件
+<img src="./img/screen/keyboard.jpg" width="280px"/>
 
-
-### 拓展外设
-
-
-
-
-
-
-
-
+### I2C 检测工具
+<img src="./img/screen/I2C_scaner.jpg" width="280px"/>
 
 
 
 
+# 拓展外设
+### AI 智能调试与协助工具
+本 Demo 支持通过外部 UART 连接调试日志，用户不仅可以实时查看硬件运行信息，还能直接向 AI-Agent 提问，让 AI 智能协助分析硬件故障、定位问题，甚至对大量数据进行总结和洞察，生成更深入的分析报告。  
+这充分展现了 AI 与硬件结合的无限可能——让开发调试更高效、更智能、更多元化。未来，AI+硬件的创新玩法，等你来解锁！
 
+<img src="./img/screen/AI_log.jpg" width="280px"/>
 
+### 外挂温湿度传感器
+- 顶部10Pin 拓展输出连接外挂传感器  
+<img src="./img/screen/temp.jpg" width="280px"/>
 
+### DIY 拓展的RFID模块
+<img src="./img/ext-modules/rfid-module-1.jpg" width="180px"/>
+<img src="./img/screen/RFID.jpg" width="280px"/>
 
+### DIY 拓展的热敏打印机
+DIY 的拓展模块，可连接热敏打印机，实现AI生图和小票打印自由，或是AI赛博求签。
+<img src="./img/ext-modules/printer-module-1.jpg" width="280px"/>
 
+---
 
-## 固件编译说明
+# 固件编译说明
 
 > **重要提示**：详细的环境搭建、编译与烧录步骤，请参考 TuyaOpen 官方文档：  
 > - [环境搭建指南](https://tuyaopen.ai/docs/quick-start/enviroment-setup)  
@@ -608,7 +628,8 @@ tos.py flash -p /dev/ttyUSB0 -b 921600  # 指定串口和波特率
 - **口袋机项目代码位置**：https://github.com/tuya/TuyaOpen/tree/master/apps/tuya_t5_pocket
 
 
-## 资料链接清单
+  
+# 资料链接清单
 
 ### 口袋机相关资料
 - **结构**
@@ -626,8 +647,10 @@ tos.py flash -p /dev/ttyUSB0 -b 921600  # 指定串口和波特率
 - 涂鸦 T5-E1 （板载天线）模组规格书：https://developer.tuya.com/en/docs/iot/T5-E1-Module-Datasheet?id=Kdar6hf0kzmfi
 - 涂鸦 T5E1-IPEX （外置天线） 模组规格书：https://developer.tuya.com/en/docs/iot/T5-E1-IPEX-Module-Datasheet?id=Kdskxvxe835tq
 ### 云端开发文档
-- 云端AI-Agent智能体开发：https://developer.tuya.com/en/docs/iot/agent?id=Kdxnn04ancnc8
-- 定制APP面板（小程序）开发：https://developer.tuya.com/en/docs/iot/tuya-miniapp?id=Ketcqlpvzaa1v  
+- 云端 AI-Agent 智能体开发：https://developer.tuya.com/en/docs/iot/agent?id=Kdxnn04ancnc8
+- 定制 APP 面板（小程序）开发：https://developer.tuya.com/en/docs/iot/tuya-miniapp?id=Ketcqlpvzaa1v  
+- 定制 MCP开发SDK： https://github.com/tuya/tuya-mcp-sdk
+- 定制 MCP 云配置文档：https://developer.tuya.com/en/docs/iot/custom-mcp?id=Kety4zbdvwdn8
 ### 其他开发板：通用让你快速上手 TuyaOpen
 - T5AI-Board 开发套件：https://www.tuyaopen.ai/docs/hardware-specific/t5-ai-board/overview-t5-ai-board
 - T5AI-Core 最小核心开发套件 https://www.tuyaopen.ai/docs/hardware-specific/t5-ai-core/overview-t5-ai-core
