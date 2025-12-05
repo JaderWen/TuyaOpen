@@ -289,8 +289,8 @@ App 端发送音量控制指令 → 云端通过 MQTT 下发 DP 数据点
 
 
 ## 涂丫丫 AI 宠物
-![AI Pet](./img/screen-1.png)
-<img src="./img/screen/main2.jpg" width="280px"/>
+![AI Pet](./img/screen-1.png)  
+<img src="./img/screen/main2.jpg" width="280px"/>  
 体验新一代虚拟宠物！涂鸦 AI 宠物主机演示展示了先进的音频、视觉、文本大模型（LLM）功能，让您的数字伙伴通过自然语音对话和情感感知与您互动。享受"类拓麻歌子-电子宠物"式的冒险，您的宠物会根据您的情绪和语音做出回应，带来真正沉浸式且有趣的虚拟陪伴体验。
 - 摇杆手柄交互
 - 语音模态交互
