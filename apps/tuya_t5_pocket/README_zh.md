@@ -2,7 +2,7 @@
 
 **Tuya-T5-Pocket** 是一款基于 TuyaOpen 开源框架打造的便携掌机。可深度接入多模态 AI-Agent LLM 大模型和音视频多模态大模型。本项目搭配涂鸦 T5 WiFi/蓝牙芯片模组，从硬件设计到软件代码完全开源，内置丰富的传感器并具备强大的外置扩展能力。
 
-![](./img/rendered/1.jpg)
+![](https://images.tuyacn.com/fe-static/docs/img/f02d8c15-22a6-4545-b808-d60737b227a8.jpg)
 
 ### 覆盖场景
 - 多模态大模型 AI-Agent 端云开发
@@ -36,7 +36,7 @@
 如图所示，Tuya-T5-Pocket 的整体硬件架构涵盖了主控模块（涂鸦T5模组）、显示屏、摄像头、音频模块（麦克风/喇叭）、多种传感器、用户输入设备（摇杆、按键）、存储（MicroSD卡）、扩展接口（Pogo Pin弹簧针和10针排针）、电池管理及通信（4G蜂窝、WIFI/BLE、USB Type-C）。整个系统高度集成，支持多模态交互，并为开发者提供丰富的拓展和定制空间。
 
 ## **2. 架构图**
-![T5AI-Pocket](img/pocket-hw-arch-diagram.jpg)
+![T5AI-Pocket](https://images.tuyacn.com/fe-static/docs/img/a76a7c68-7825-4f86-8c8f-d88a9bec1f76.jpg)
 
 选择涂鸦 T5 芯片具有显著优势：低功耗、WiFi、蓝牙、摄像头、麦克风、喇叭、显示屏等都已高度集成到 T5 芯片/模组中，完全满足集成性要求，并具备多模态大模型 AI Agent 交互所需的所有能力，可谓专为大模型应用量身打造。丰富的外设扩展能力为开发者提供了传感器数据与大模型深度整合的可行性，交互方式不仅限于音视频模态，文本数据也是极佳的交互模态。
 
@@ -44,31 +44,31 @@
 ### 口袋机主板工艺
 - 4 层板
 - 板厚：1.2mm 
-  - ![](./img/mb-pcb-layout.png)
-  - ![](./img/mb-pcb-3D-front.png)
-  - ![](./img/mb-pcb-3D-back.png)
+  - ![](https://images.tuyacn.com/fe-static/docs/img/dd9da6f8-ec14-41b0-8d8e-e2fbbdca7f6b.png)
+  - ![](https://images.tuyacn.com/fe-static/docs/img/56064bff-c0fc-4b2f-b279-28d4756abdb6.png)
+  - ![](https://images.tuyacn.com/fe-static/docs/img/6194a583-6417-4a17-9951-f0f325fae97a.png)
 
 ### Pogo Pin FPC 排线工艺
 - 2 层板
 - 板厚：0.15mm
 - 补强：PI 0.15mm
 - **⚠️ 注意**：补强需使用 PI 材料，钢片补强会影响 Pogo 磁铁的磁力
-  - ![](./img/fpc-pcba.png)
+  - ![](https://images.tuyacn.com/fe-static/docs/img/3c494766-aefc-4660-9871-3e3feb019571.png)
 
 ## **4. 采购清单**
 ### 3D 打印外壳件（嘉立创打样）
 - 1 个，主机外壳（3D 打印或 CNC 加工）  
-  <img src="./img/asm/parts/alu-case.png" width="180" />
+  <img src="https://images.tuyacn.com/fe-static/docs/img/71c488f4-297b-44a1-9d00-467f229ce5f6.png" width="180" />
 - 1 个，屏幕垫高件  
-  <img src="./img/asm/parts/acrylic-screen-3mm.png" width="180" />
+  <img src="https://images.tuyacn.com/fe-static/docs/img/ee6893c0-98e3-4206-9dbe-8955781f5d77.png" width="180" />
 - 1 个，Pogo Pin 压板  
-  <img src="./img/asm/parts/3d-print-pogo-holder.png" width="180" />
+  <img src="https://images.tuyacn.com/fe-static/docs/img/9167ae86-bcb6-4d5b-ba7b-f6c81689f6b1.png" width="180" />
 
 ### 亚克力件（2mm/4mm）
 - 1 个，开机键（4mm 厚透明亚克力）  
-  <img src="./img/asm/parts/acrylic-power-key-4mm.png" width="180" />
+  <img src="https://images.tuyacn.com/fe-static/docs/img/5ed36592-b8ad-413e-84ba-0ca945a32352.png" width="180" />
 - 1 个，面板（2mm 厚透明亚克力）  
-  <img src="./img/asm/parts/acrylic-face-plate-2mm.png" width="180" />
+  <img src="https://images.tuyacn.com/fe-static/docs/img/2db69ece-a025-460d-8792-9d88f49de6c7.png" width="180" />
 
 ### 主板电子器件
 - 1 个，口袋机主板 PCB + PCBA + BOM（嘉立创打板）
@@ -271,7 +271,7 @@ App 端发送音量控制指令 → 云端通过 MQTT 下发 DP 数据点
 所有数据流和事件流都通过统一的事件驱动机制和消息传递接口实现，确保各层之间解耦，便于维护和扩展。
 
 ## 用户硬件交互输入定义
-![](./img/pocket-key-buttons-cn.jpg)
+![](https://images.tuyacn.com/fe-static/docs/img/4e483251-3c44-4acc-9c82-a2d806a4bbad.jpg)
 
 | 输入         | 功能描述                                 |
 |--------------|------------------------------------------|
@@ -290,8 +290,8 @@ App 端发送音量控制指令 → 云端通过 MQTT 下发 DP 数据点
 
 
 ## 涂丫丫 AI 宠物
-![AI Pet](./img/screen-1.png)  
-<img src="./img/screen/main2.jpg" width="280px"/>  
+![AI Pet](https://images.tuyacn.com/fe-static/docs/img/51ac6db2-dc40-4ef9-ae72-5e0b42f74a2c.png)  
+<img src="https://images.tuyacn.com/fe-static/docs/img/5c7345a9-63c2-455a-8aa5-3f2953b414b8.jpg" width="280px"/>  
 体验新一代虚拟宠物！涂鸦 AI 宠物主机演示展示了先进的音频、视觉、文本大模型（LLM）功能，让您的数字伙伴通过自然语音对话和情感感知与您互动。享受"类拓麻歌子-电子宠物"式的冒险，您的宠物会根据您的情绪和语音做出回应，带来真正沉浸式且有趣的虚拟陪伴体验。
 - 摇杆手柄交互
 - 语音模态交互
@@ -321,33 +321,33 @@ App 端发送音量控制指令 → 云端通过 MQTT 下发 DP 数据点
 ## 贪吃蛇小游戏 Demo
 该 Demo 展示了在T5 Pocket硬件上利用 LVGL UI 框架实现的经典贪吃蛇（Snake）小游戏。玩家通过摇杆控制贪吃蛇的移动方向，在狭小的黑白显示屏上体验极简风格的怀旧游戏乐趣。
 - **操作说明**：玩家可使用摇杆操控贪吃蛇上下左右移动，尽量吃到屏幕上的“食物”，每当吃到一个食物蛇身会变长一节，游戏难度随长度加大。  
-<img src="./img/screen/snake.jpg" width="280px"/>
+<img src="https://images.tuyacn.com/fe-static/docs/img/8a916d7b-2119-43ee-817a-7b43bc2df273.jpg" width="280px"/>
   
 
 ## Dino Jump小游戏 Demo
 这是一个"跳跳龙"（Dino Jump/Chrome小恐龙）式跑酷游戏，同样基于LVGL渲染引擎实现。玩家需要操控恐龙（或小动物）持续奔跑，灵活跳跃躲避障碍物。  
-<img src="./img/screen/ducky_game.jpg" width="280px"/>
+<img src="https://images.tuyacn.com/fe-static/docs/img/13f339dc-7945-4a48-bf30-50be63d98b3d.jpg" width="280px"/>
 
 
 
 ### 摄像头 Demo
 本 Demo 展示了如何将摄像头采集的彩色图像实时转换并显示到单色 LCD 屏幕上。由于本设备屏幕为单色（黑白）且不支持灰阶显示，图像处理部分采用了经典的“抖动算法”（Dithering Algorithm），常用的有 Floyd–Steinberg、Bayer 抖动等。该算法可将采集到的彩色图像信息以视觉误差扩散的方式有机分布在屏幕像素上，从而在黑白显示屏上呈现出丰富的层次感，弱化失真与细节损失。
-<img src="./img/screen/camera3.jpg" width="280px"/>
+<img src="https://images.tuyacn.com/fe-static/docs/img/12bf155d-173e-4b32-98e7-62f63cce0641.jpg" width="280px"/>
 
 
 ### 加速度测试水平仪 Demo
 BMI270传感器读出，水平渲染Demo  
-<img src="./img/screen/level.jpg" width="280px"/>
+<img src="https://images.tuyacn.com/fe-static/docs/img/526f86f5-7e09-48ba-bb22-4851e2e980aa.jpg" width="280px"/>
 
 ### 电子书Demo
 SD卡读取TXT示例，EPUB兼容和字体抗锯齿也有待优化  
-<img src="./img/screen/ebook.jpg" width="280px"/>
+<img src="https://images.tuyacn.com/fe-static/docs/img/4ff94e1f-c083-4056-83e7-43b1a331ee2d.jpg" width="280px"/>
 
 ### 虚拟键盘组件
-<img src="./img/screen/keyboard.jpg" width="280px"/>
+<img src="https://images.tuyacn.com/fe-static/docs/img/a27e510d-4d3d-4087-a7cd-733684608883.jpg" width="280px"/>
 
 ### I2C 检测工具
-<img src="./img/screen/I2C_scaner.jpg" width="280px"/>
+<img src="https://images.tuyacn.com/fe-static/docs/img/83147297-57b7-454e-a883-9fd12277717c.jpg" width="280px"/>
 
 
 
@@ -357,19 +357,19 @@ SD卡读取TXT示例，EPUB兼容和字体抗锯齿也有待优化
 本 Demo 支持通过外部 UART 连接调试日志，用户不仅可以实时查看硬件运行信息，还能直接向 AI-Agent 提问，让 AI 智能协助分析硬件故障、定位问题，甚至对大量数据进行总结和洞察，生成更深入的分析报告。  
 这充分展现了 AI 与硬件结合的无限可能——让开发调试更高效、更智能、更多元化。未来，AI+硬件的创新玩法，等你来解锁！
 
-<img src="./img/screen/AI_log.jpg" width="280px"/>
+<img src="https://images.tuyacn.com/fe-static/docs/img/080b665c-d4f0-43a7-9830-cb0b2045963f.jpg" width="280px"/>
 
 ### 外挂温湿度传感器
 - 顶部10Pin 拓展输出连接外挂传感器  
-<img src="./img/screen/temp.jpg" width="280px"/>
+<img src="https://images.tuyacn.com/fe-static/docs/img/2a0c2f2f-fdae-4cf2-bf00-1fed0a56d71c.jpg" width="280px"/>
 
 ### DIY 拓展的RFID模块
-<img src="./img/ext-modules/rfid-module-1.jpg" width="180px"/>
-<img src="./img/screen/RFID.jpg" width="280px"/>
+<img src="https://images.tuyacn.com/fe-static/docs/img/25a8ca5e-1db8-4fc7-8e38-ff933e994318.jpg" width="180px"/>
+<img src="https://images.tuyacn.com/fe-static/docs/img/4fe2301b-123a-4902-bca9-6b5d08647254.jpg" width="280px"/>
 
 ### DIY 拓展的热敏打印机
 DIY 的拓展模块，可连接热敏打印机，实现AI生图和小票打印自由，或是AI赛博求签。
-<img src="./img/ext-modules/printer-module-1.jpg" width="280px"/>
+<img src="https://images.tuyacn.com/fe-static/docs/img/c098ab1c-34b3-4f70-9a5b-154c04351e2c.jpg" width="280px"/>
 
 ---
 
