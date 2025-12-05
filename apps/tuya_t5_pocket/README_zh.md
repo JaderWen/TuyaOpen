@@ -84,9 +84,9 @@
 ### 装配配件
 - 1 个，摄像头：GC2145，分辨率：2 MP（1616 × 1232 像素）[Datasheet](https://e2e.ti.com/cfs-file/__key/communityserver-discussions-components-files/968/GC2145-CSP-DataSheet-release-V1.0_5F00_20131201.pdf) | [购买](https://item.taobao.com/item.htm?id=888150036714&skuId=6020719858877&spm=a1z10.5-c-s.w4002-24402091062.20.21aa5cb0POTsvY)
 - 1 个，任天堂手柄：Switch 手柄修配件   
-  <img src="./img/switch-joystick.jpg" width="180" height="180" />  
+  <img src="https://images.tuyacn.com/fe-static/docs/img/649bd118-cf86-4930-afc9-7ad9ea3eaf67.jpg" width="180" height="180" />  
 - 1 个，任天堂电池：Switch 左右手柄 HAC-006 电池 525mAh [购买](https://item.taobao.com/item.htm?abbucket=12&id=703587008937&mi_id=0000c0L1ujrnm8arvH1f83RfKdQUSiUw2SApmPzdyHi06_Q&ns=1&priceTId=214787d017648359890651639e1122&skuId=5129905499147&spm=a21n57.1.hoverItem.2&utparam=%7B%22aplus_abtest%22%3A%226e88bd111668d99016d34df6b4d04988%22%7D&xxc=taobaoSearch)  
-  <img src="./img/switch-battery.jpg" width="180" height="180" />  
+  <img src="https://images.tuyacn.com/fe-static/docs/img/bb0f0d9c-7cbe-4e62-be1b-d1e203664b55.jpg" width="180" height="180" />  
 
 
 ### 辅料
@@ -331,7 +331,7 @@ App 端发送音量控制指令 → 云端通过 MQTT 下发 DP 数据点
 
 
 ### 摄像头 Demo
-本 Demo 展示了如何将摄像头采集的彩色图像实时转换并显示到单色 LCD 屏幕上。由于本设备屏幕为单色（黑白）且不支持灰阶显示，图像处理部分采用了经典的“抖动算法”（Dithering Algorithm），常用的有 Floyd–Steinberg、Bayer 抖动等。该算法可将采集到的彩色图像信息以视觉误差扩散的方式有机分布在屏幕像素上，从而在黑白显示屏上呈现出丰富的层次感，弱化失真与细节损失。
+本 Demo 展示了如何将摄像头采集的彩色图像实时转换并显示到单色 LCD 屏幕上。由于本设备屏幕为单色（黑白）且不支持灰阶显示，图像处理部分采用了经典的“抖动算法”（Dithering Algorithm），常用的有 Floyd–Steinberg、Bayer 抖动等。该算法可将采集到的彩色图像信息以视觉误差扩散的方式有机分布在屏幕像素上，从而在黑白显示屏上呈现出丰富的层次感，弱化失真与细节损失。  
 <img src="https://images.tuyacn.com/fe-static/docs/img/12bf155d-173e-4b32-98e7-62f63cce0641.jpg" width="280px"/>
 
 
@@ -631,14 +631,10 @@ tos.py flash -p /dev/ttyUSB0 -b 921600  # 指定串口和波特率
 
   
 # 资料链接清单
-
-### 口袋机相关资料
-- **结构**
-  - 3D 结构 .STEP：（待补充）  
-
-- **生产资料**
-  - 2D 激光切割-亚克力：（待补充）
-  - 3D打印：（待补充）
+### 口袋机相关资料 （见附件）
+  - 3D 结构 .STEP
+  - 2D 激光切割-亚克力
+  - 3D打印
 
 ### TuyaOpen开源项目
 - TuyaOpen官网：https://tuyaopen.ai
