@@ -151,6 +151,10 @@ static TDL_LED_HANDLE_T sg_led_hdl = NULL;
 static TDL_BUTTON_HANDLE sg_button_hdl = NULL;
 #endif
 
+#if (defined(ENABLE_CHAT_DISPLAY) && (ENABLE_CHAT_DISPLAY == 1)) || (defined(ENABLE_CHAT_DISPLAY2) && (ENABLE_CHAT_DISPLAY2 == 1))
+static char *sg_emoji = EMOJI_NEUTRAL;
+#endif
+
 /***********************************************************
 ***********************function define**********************
 ***********************************************************/
@@ -231,6 +235,9 @@ static void __app_ai_audio_evt_inform_cb(AI_AUDIO_EVENT_E event, uint8_t *data, 
     case AI_AUDIO_EVT_AI_REPLIES_TEXT_START: {
         PR_DEBUG("AI reply start, len: %d", len);
 #if defined(ENABLE_CHAT_DISPLAY) && (ENABLE_CHAT_DISPLAY == 1) || (defined(ENABLE_CHAT_DISPLAY2) && (ENABLE_CHAT_DISPLAY2 == 1))
+        // Change emotion to HAPPY when AI starts talking
+        sg_emoji = EMOJI_HAPPY;
+        app_display_send_msg(TY_DISPLAY_TP_EMOTION, (uint8_t *)sg_emoji, strlen(sg_emoji));
 #if defined(ENABLE_GUI_STREAM_AI_TEXT) && (ENABLE_GUI_STREAM_AI_TEXT == 1)
         app_display_send_msg(TY_DISPLAY_TP_ASSISTANT_MSG_STREAM_START, data, len);
 #else
@@ -386,6 +393,7 @@ static void __app_ai_audio_state_inform_cb(AI_AUDIO_STATE_E state)
         break;
     case AI_AUDIO_STATE_AI_SPEAK:
 #if (defined(ENABLE_CHAT_DISPLAY) && (ENABLE_CHAT_DISPLAY == 1)) || (defined(ENABLE_CHAT_DISPLAY2) && (ENABLE_CHAT_DISPLAY2 == 1))
+        app_display_send_msg(TY_DISPLAY_TP_EMOTION, (uint8_t *)sg_emoji, strlen(sg_emoji));
         app_display_send_msg(TY_DISPLAY_TP_STATUS, (uint8_t *)SPEAKING, strlen(SPEAKING));
 #else
         PR_NOTICE("State: AI_SPEAKING (Playing response...)");
