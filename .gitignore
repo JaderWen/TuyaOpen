@@ -26,5 +26,3 @@ dist
 /.set_example
 /dist
 *monitor.log
-
-app_default.config
