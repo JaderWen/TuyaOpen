@@ -34,6 +34,7 @@ void ui_set_device_status(const char *status);
 void ui_set_user_msg(const char *msg);
 void ui_set_assistant_msg(const char *msg);
 void ui_set_system_msg(const char *msg);
+void ui_set_image_from_keyword(const char *keyword);
 
 #ifdef __cplusplus
 } /*extern "C"*/

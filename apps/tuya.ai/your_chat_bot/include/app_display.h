@@ -57,6 +57,7 @@ typedef enum {
     TY_DISPLAY_TP_SYSTEM_MSG,
 
     TY_DISPLAY_TP_EMOTION,
+    TY_DISPLAY_TP_IMAGE,
 
     // status bar
     TY_DISPLAY_TP_STATUS,

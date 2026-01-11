@@ -18,12 +18,23 @@ LV_IMAGE_DECLARE(gif_surprised);
 LV_IMAGE_DECLARE(gif_confused);
 LV_IMAGE_DECLARE(gif_thinking);
 
+// Declare battery, wifi, volume images
+LV_IMAGE_DECLARE(ui_img_image_battery_battery100_png);
+LV_IMAGE_DECLARE(ui_img_image_battery_battery60_png);
+LV_IMAGE_DECLARE(ui_img_image_battery_battery50_png);
+LV_IMAGE_DECLARE(ui_img_image_battery_battery20_png);
+LV_IMAGE_DECLARE(ui_img_image_battery_battercharging_png);
+LV_IMAGE_DECLARE(ui_img_image_wifi_wifi_30_png);
+LV_IMAGE_DECLARE(ui_img_image_wifi_wifi_disconnect_30_png);
+LV_IMAGE_DECLARE(ui_img_image_volume_volume_png);
+
 lv_obj_t *ui_home                     = NULL;
 lv_obj_t *ui_emoji_container          = NULL;
 lv_obj_t *ui_emoji_gif                = NULL;
 lv_obj_t *ui_chat_status_container    = NULL;
 lv_obj_t *ui_chat_status_label        = NULL;
 lv_obj_t *ui_audio_waveform_container = NULL;
+lv_obj_t *ui_keyword_image            = NULL;  // For displaying keyword-triggered images
 // event funtions
 void ui_event_home(lv_event_t *e)
 {
@@ -303,4 +314,74 @@ void ui_set_assistant_msg(const char *msg)
 void ui_set_system_msg(const char *msg)
 {
     return;
+}
+
+typedef struct {
+    char       *img_str;
+    const lv_img_dsc_t *img_dsc;
+} UI_HOME_IMG_T;
+
+static UI_HOME_IMG_T sg_home_img_list[] = {
+    {
+        .img_str = "SHOW_BATTERY",
+        .img_dsc = &ui_img_image_battery_battery100_png,
+    },
+    {
+        .img_str = "SHOW_WIFI",
+        .img_dsc = &ui_img_image_wifi_wifi_30_png,
+    },
+    {
+        .img_str = "SHOW_VOLUME",
+        .img_dsc = &ui_img_image_volume_volume_png,
+    },
+};
+
+/**
+ * @brief Timer callback to hide keyword image
+ */
+static void __hide_keyword_image_timer_cb(lv_timer_t *timer)
+{
+    lv_obj_t *image = (lv_obj_t *)timer->user_data;
+    if (image) {
+        lv_obj_add_flag(image, LV_OBJ_FLAG_HIDDEN);
+    }
+    lv_timer_delete(timer);
+}
+
+/**
+ * @brief Show an image based on detected keyword
+ * @param keyword The keyword that was detected (battery, wifi, volume)
+ */
+void ui_set_image_from_keyword(const char *keyword)
+{
+    if (!keyword || !ui_home) {
+        return;
+    }
+
+    // Create image object if it doesn't exist
+    if (!ui_keyword_image) {
+        ui_keyword_image = lv_image_create(ui_home);
+        lv_obj_set_width(ui_keyword_image, LV_SIZE_CONTENT);
+        lv_obj_set_height(ui_keyword_image, LV_SIZE_CONTENT);
+        lv_obj_set_align(ui_keyword_image, LV_ALIGN_CENTER);
+        lv_obj_add_flag(ui_keyword_image, LV_OBJ_FLAG_HIDDEN);  // Initially hidden
+    }
+
+    int i;
+    for (i = 0; i < sizeof(sg_home_img_list) / sizeof(sg_home_img_list[0]); i++) {
+        if (strcmp(keyword, sg_home_img_list[i].img_str) == 0) {
+            lv_image_set_src(ui_keyword_image, sg_home_img_list[i].img_dsc);
+            break;
+        }
+    }
+    if (i == sizeof(sg_home_img_list) / sizeof(sg_home_img_list[0])) {
+        // Keyword not found
+        return;
+    }
+
+    // Show the image
+    lv_obj_remove_flag(ui_keyword_image, LV_OBJ_FLAG_HIDDEN);
+    
+    // Auto-hide after 3 seconds
+    lv_timer_create(__hide_keyword_image_timer_cb, 3000, ui_keyword_image);
 }

@@ -78,6 +78,9 @@ static __attribute__((unused)) void __app_display_msg_handle(DISPLAY_MSG_T *msg_
     case TY_DISPLAY_TP_SYSTEM_MSG: {
         ui_set_system_msg(msg_data->data);
     } break;
+    case TY_DISPLAY_TP_IMAGE: {
+        ui_set_image_from_keyword(msg_data->data);
+    } break;
     default:
         break;
     }

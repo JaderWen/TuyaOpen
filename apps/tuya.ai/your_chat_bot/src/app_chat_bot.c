@@ -154,6 +154,59 @@ static TDL_BUTTON_HANDLE sg_button_hdl = NULL;
 /***********************************************************
 ***********************function define**********************
 ***********************************************************/
+
+#if defined(ENABLE_CHAT_DISPLAY2) && (ENABLE_CHAT_DISPLAY2 == 1)
+
+/**
+ * @brief Detect keywords in AI response and display corresponding image
+ * @param text The AI response text to check
+ * @param len Length of the text
+ */
+static void __detect_keywords_and_show_image(const char *text, uint32_t len)
+{
+    if (!text || len == 0) {
+        return;
+    }
+
+    // Create a null-terminated copy for string functions
+    char *text_lower = tal_malloc(len + 1);
+    if (!text_lower) {
+        return;
+    }
+    
+    memcpy(text_lower, text, len);
+    text_lower[len] = '\0';
+    
+    // Convert to lowercase for case-insensitive matching
+    for (uint32_t i = 0; i < len; i++) {
+        if (text_lower[i] >= 'A' && text_lower[i] <= 'Z') {
+            text_lower[i] = text_lower[i] + 32;
+        }
+    }
+
+    // Check for battery keywords
+    if (strstr(text_lower, "battery") || strstr(text_lower, "电池")) {
+        PR_DEBUG("Detected 'battery' keyword, showing battery image");
+        app_display_send_msg(TY_DISPLAY_TP_IMAGE, (uint8_t *)"SHOW_BATTERY", 12);
+    }
+    // Check for wifi/network keywords
+    else if (strstr(text_lower, "wifi") || strstr(text_lower, "network") || 
+             strstr(text_lower, "internet") || strstr(text_lower, "wi-fi") ||
+             strstr(text_lower, "连接") || strstr(text_lower, "网络")) {
+        PR_DEBUG("Detected 'wifi/network' keyword, showing wifi image");
+        app_display_send_msg(TY_DISPLAY_TP_IMAGE, (uint8_t *)"SHOW_WIFI", 9);
+    }
+    // Check for volume/sound keywords
+    else if (strstr(text_lower, "volume") || strstr(text_lower, "sound") || 
+             strstr(text_lower, "音量") || strstr(text_lower, "声音")) {
+        PR_DEBUG("Detected 'volume' keyword, showing volume image");
+        app_display_send_msg(TY_DISPLAY_TP_IMAGE, (uint8_t *)"SHOW_VOLUME", 11);
+    }
+
+    tal_free(text_lower);
+}
+#endif
+
 static void __app_ai_audio_evt_inform_cb(AI_AUDIO_EVENT_E event, uint8_t *data, uint32_t len, void *arg)
 {
 #if (defined(ENABLE_CHAT_DISPLAY) && (ENABLE_CHAT_DISPLAY == 1)) || (defined(ENABLE_CHAT_DISPLAY2) && (ENABLE_CHAT_DISPLAY2 == 1))
@@ -165,17 +218,18 @@ static void __app_ai_audio_evt_inform_cb(AI_AUDIO_EVENT_E event, uint8_t *data, 
 
     switch (event) {
     case AI_AUDIO_EVT_HUMAN_ASR_TEXT: {
-        if (len > 0 && data) {
-// send asr text to display
-#if (defined(ENABLE_CHAT_DISPLAY) && (ENABLE_CHAT_DISPLAY == 1)) || (defined(ENABLE_CHAT_DISPLAY2) && (ENABLE_CHAT_DISPLAY2 == 1))
-            app_display_send_msg(TY_DISPLAY_TP_USER_MSG, data, len);
-#else
-            // Ubuntu console logging
-            PR_NOTICE("USER: %.*s", (int)len, data);
-#endif
-        }
+//         if (len > 0 && data) {
+// // send asr text to display
+// #if (defined(ENABLE_CHAT_DISPLAY) && (ENABLE_CHAT_DISPLAY == 1)) || (defined(ENABLE_CHAT_DISPLAY2) && (ENABLE_CHAT_DISPLAY2 == 1))
+//             app_display_send_msg(TY_DISPLAY_TP_USER_MSG, data, len);
+// #else
+//             // Ubuntu console logging
+//             PR_NOTICE("USER: %.*s", (int)len, data);
+// #endif
+//         }
     } break;
     case AI_AUDIO_EVT_AI_REPLIES_TEXT_START: {
+        PR_DEBUG("AI reply start, len: %d", len);
 #if defined(ENABLE_CHAT_DISPLAY) && (ENABLE_CHAT_DISPLAY == 1) || (defined(ENABLE_CHAT_DISPLAY2) && (ENABLE_CHAT_DISPLAY2 == 1))
 #if defined(ENABLE_GUI_STREAM_AI_TEXT) && (ENABLE_GUI_STREAM_AI_TEXT == 1)
         app_display_send_msg(TY_DISPLAY_TP_ASSISTANT_MSG_STREAM_START, data, len);
@@ -204,7 +258,12 @@ static void __app_ai_audio_evt_inform_cb(AI_AUDIO_EVENT_E event, uint8_t *data, 
 #endif
     } break;
     case AI_AUDIO_EVT_AI_REPLIES_TEXT_DATA: {
+        PR_DEBUG("AI reply data chunk, len: %d, content: %.*s", len, (int)len, data);
 #if (defined(ENABLE_CHAT_DISPLAY) && (ENABLE_CHAT_DISPLAY == 1)) || (defined(ENABLE_CHAT_DISPLAY2) && (ENABLE_CHAT_DISPLAY2 == 1))
+#if defined(ENABLE_CHAT_DISPLAY2) && (ENABLE_CHAT_DISPLAY2 == 1)
+        // Detect keywords and show images
+        __detect_keywords_and_show_image((const char *)data, len);
+#endif
 #if defined(ENABLE_GUI_STREAM_AI_TEXT) && (ENABLE_GUI_STREAM_AI_TEXT == 1)
         app_display_send_msg(TY_DISPLAY_TP_ASSISTANT_MSG_STREAM_DATA, data, len);
 #else
@@ -221,6 +280,7 @@ static void __app_ai_audio_evt_inform_cb(AI_AUDIO_EVENT_E event, uint8_t *data, 
 #endif
     } break;
     case AI_AUDIO_EVT_AI_REPLIES_TEXT_END: {
+        PR_DEBUG("AI reply end");
 #if (defined(ENABLE_CHAT_DISPLAY) && (ENABLE_CHAT_DISPLAY == 1)) || (defined(ENABLE_CHAT_DISPLAY2) && (ENABLE_CHAT_DISPLAY2 == 1))
 #if defined(ENABLE_GUI_STREAM_AI_TEXT) && (ENABLE_GUI_STREAM_AI_TEXT == 1)
         app_display_send_msg(TY_DISPLAY_TP_ASSISTANT_MSG_STREAM_END, data, len);
