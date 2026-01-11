@@ -11,6 +11,7 @@
 #include "lang_config.h"
 
 LV_IMAGE_DECLARE(gif_role_1);
+LV_IMAGE_DECLARE(gif_role_1_static);
 LV_IMAGE_DECLARE(gif_neutral);
 LV_IMAGE_DECLARE(gif_happy);
 LV_IMAGE_DECLARE(gif_sad);
@@ -18,16 +19,6 @@ LV_IMAGE_DECLARE(gif_angry);
 LV_IMAGE_DECLARE(gif_surprised);
 LV_IMAGE_DECLARE(gif_confused);
 LV_IMAGE_DECLARE(gif_thinking);
-
-// Declare battery, wifi, volume images
-LV_IMAGE_DECLARE(ui_img_image_battery_battery100_png);
-LV_IMAGE_DECLARE(ui_img_image_battery_battery60_png);
-LV_IMAGE_DECLARE(ui_img_image_battery_battery50_png);
-LV_IMAGE_DECLARE(ui_img_image_battery_battery20_png);
-LV_IMAGE_DECLARE(ui_img_image_battery_battercharging_png);
-LV_IMAGE_DECLARE(ui_img_image_wifi_wifi_30_png);
-LV_IMAGE_DECLARE(ui_img_image_wifi_wifi_disconnect_30_png);
-LV_IMAGE_DECLARE(ui_img_image_volume_volume_png);
 
 lv_obj_t *ui_home                     = NULL;
 lv_obj_t *ui_emoji_container          = NULL;
@@ -118,7 +109,7 @@ void ui_home_screen_init(void)
 
     // Add gif
     ui_emoji_gif = lv_gif_create(ui_home);
-    lv_gif_set_src(ui_emoji_gif, &gif_neutral);
+    lv_gif_set_src(ui_emoji_gif, &gif_role_1_static);
     lv_obj_align(ui_emoji_gif, LV_ALIGN_CENTER, 0, 0);
 
     ui_chat_status_label = lv_label_create(ui_home);
@@ -264,6 +255,10 @@ static UI_HOME_EMOTION_T sg_home_emotion_list[] = {
         .emotion_str = "ROLE_1",
         .emotion_gif = &gif_role_1,
     },
+    {
+        .emotion_str = "ROLE_1_STATIC",
+        .emotion_gif = &gif_role_1_static,
+    },
 };
 
 void ui_set_emotion(const char *emotion)
@@ -339,6 +334,18 @@ static UI_HOME_IMG_T sg_home_img_list[] = {
         .img_str = "SHOW_VOLUME",
         .img_dsc = &ui_img_image_volume_volume_png,
     },
+    {
+        .img_str = "SHOW_PYRAMID",
+        .img_dsc = &pyramid,
+    },
+    {
+        .img_str = "SHOW_MONA_LISA",
+        .img_dsc = &mona_lisa,
+    },
+    {
+        .img_str = "SHOW_CROWN",
+        .img_dsc = &crown,
+    },
 };
 
 /**
@@ -387,6 +394,6 @@ void ui_set_image_from_keyword(const char *keyword)
     // Show the image
     lv_obj_remove_flag(ui_keyword_image, LV_OBJ_FLAG_HIDDEN);
     
-    // Auto-hide after 3 seconds
-    lv_timer_create(__hide_keyword_image_timer_cb, 3000, ui_keyword_image);
+    // Auto-hide after 5 seconds
+    lv_timer_create(__hide_keyword_image_timer_cb, 5000, ui_keyword_image);
 }

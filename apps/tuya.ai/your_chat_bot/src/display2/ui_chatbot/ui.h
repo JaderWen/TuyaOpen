@@ -43,6 +43,9 @@ LV_IMG_DECLARE(ui_img_image_volume_volume_png);    // assets/image/volume/volume
 
 LV_IMG_DECLARE(ui_img_image_wifi_wifi_30_png);    // assets/image/wifi/wifi_30.png
 LV_IMG_DECLARE(ui_img_image_wifi_wifi_disconnect_30_png);    // assets/image/wifi/wifi_disconnect_30.png
+LV_IMG_DECLARE(pyramid);
+LV_IMG_DECLARE(mona_lisa);
+LV_IMG_DECLARE(crown);
 
 // FONTS
 LV_FONT_DECLARE(ui_font_mont_82);

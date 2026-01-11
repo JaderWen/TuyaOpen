@@ -43,6 +43,7 @@ typedef uint8_t UI_WIFI_STATUS_E;
 #define EMOJI_DISAPPOINTED "DISAPPOINTED"
 #define EMOJI_ANNOYED      "ANNOYED"
 #define EMOJI_ROLE_1        "ROLE_1"
+#define EMOJI_ROLE_1_STATIC "ROLE_1_STATIC"
 
 /***********************************************************
 ***********************typedef define***********************

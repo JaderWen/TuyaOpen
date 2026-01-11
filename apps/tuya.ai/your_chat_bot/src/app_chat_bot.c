@@ -152,7 +152,7 @@ static TDL_BUTTON_HANDLE sg_button_hdl = NULL;
 #endif
 
 #if (defined(ENABLE_CHAT_DISPLAY) && (ENABLE_CHAT_DISPLAY == 1)) || (defined(ENABLE_CHAT_DISPLAY2) && (ENABLE_CHAT_DISPLAY2 == 1))
-static char *sg_emoji = EMOJI_NEUTRAL;
+static char *sg_emoji = EMOJI_ROLE_1_STATIC;
 #endif
 
 /***********************************************************
@@ -188,23 +188,35 @@ static void __detect_keywords_and_show_image(const char *text, uint32_t len)
         }
     }
 
-    // Check for battery keywords
-    if (strstr(text_lower, "battery") || strstr(text_lower, "电池")) {
-        PR_DEBUG("Detected 'battery' keyword, showing battery image");
-        app_display_send_msg(TY_DISPLAY_TP_IMAGE, (uint8_t *)"SHOW_BATTERY", 12);
+    // // Check for battery keywords
+    // if (strstr(text_lower, "battery") || strstr(text_lower, "电池")) {
+    //     PR_DEBUG("Detected 'battery' keyword, showing battery image");
+    //     app_display_send_msg(TY_DISPLAY_TP_IMAGE, (uint8_t *)"SHOW_BATTERY", 12);
+    // }
+    // // Check for wifi/network keywords
+    // else if (strstr(text_lower, "wifi") || strstr(text_lower, "network") || 
+    //          strstr(text_lower, "internet") || strstr(text_lower, "wi-fi") ||
+    //          strstr(text_lower, "连接") || strstr(text_lower, "网络")) {
+    //     PR_DEBUG("Detected 'wifi/network' keyword, showing wifi image");
+    //     app_display_send_msg(TY_DISPLAY_TP_IMAGE, (uint8_t *)"SHOW_WIFI", 9);
+    // }
+    // // Check for volume/sound keywords
+    // else if (strstr(text_lower, "volume") || strstr(text_lower, "sound") || 
+    //          strstr(text_lower, "音量") || strstr(text_lower, "声音")) {
+    //     PR_DEBUG("Detected 'volume' keyword, showing volume image");
+    //     app_display_send_msg(TY_DISPLAY_TP_IMAGE, (uint8_t *)"SHOW_VOLUME", 11);
+    // }
+    if (strstr(text_lower, "grand hall") || strstr(text_lower, "pyramid"))  {
+        PR_DEBUG("Detected 'pyramid' keyword, showing pyramid image");
+        app_display_send_msg(TY_DISPLAY_TP_IMAGE, (uint8_t *)"SHOW_PYRAMID", 12);
     }
-    // Check for wifi/network keywords
-    else if (strstr(text_lower, "wifi") || strstr(text_lower, "network") || 
-             strstr(text_lower, "internet") || strstr(text_lower, "wi-fi") ||
-             strstr(text_lower, "连接") || strstr(text_lower, "网络")) {
-        PR_DEBUG("Detected 'wifi/network' keyword, showing wifi image");
-        app_display_send_msg(TY_DISPLAY_TP_IMAGE, (uint8_t *)"SHOW_WIFI", 9);
+    else if (strstr(text_lower, "mona") && strstr(text_lower, "lisa"))  {
+        PR_DEBUG("Detected 'Mona Lisa' keyword, showing Mona Lisa image");
+        app_display_send_msg(TY_DISPLAY_TP_IMAGE, (uint8_t *)"SHOW_MONA_LISA", 14);
     }
-    // Check for volume/sound keywords
-    else if (strstr(text_lower, "volume") || strstr(text_lower, "sound") || 
-             strstr(text_lower, "音量") || strstr(text_lower, "声音")) {
-        PR_DEBUG("Detected 'volume' keyword, showing volume image");
-        app_display_send_msg(TY_DISPLAY_TP_IMAGE, (uint8_t *)"SHOW_VOLUME", 11);
+    else if (strstr(text_lower, "crown") || strstr(text_lower, "imperial jewels")) {
+        PR_DEBUG("Detected 'crown' keyword, showing crown image");
+        app_display_send_msg(TY_DISPLAY_TP_IMAGE, (uint8_t *)"SHOW_CROWN", 10);
     }
 
     tal_free(text_lower);
@@ -369,7 +381,7 @@ static void __app_ai_audio_state_inform_cb(AI_AUDIO_STATE_E state)
 #endif
 
 #if (defined(ENABLE_CHAT_DISPLAY) && (ENABLE_CHAT_DISPLAY == 1)) || (defined(ENABLE_CHAT_DISPLAY2) && (ENABLE_CHAT_DISPLAY2 == 1))
-        app_display_send_msg(TY_DISPLAY_TP_EMOTION, (uint8_t *)EMOJI_NEUTRAL, strlen(EMOJI_NEUTRAL));
+        app_display_send_msg(TY_DISPLAY_TP_EMOTION, (uint8_t *)EMOJI_ROLE_1_STATIC, strlen(EMOJI_ROLE_1_STATIC));
         app_display_send_msg(TY_DISPLAY_TP_STATUS, (uint8_t *)STANDBY, strlen(STANDBY));
 #else
         PR_NOTICE("State: STANDBY (Ready for next conversation)");
@@ -381,6 +393,7 @@ static void __app_ai_audio_state_inform_cb(AI_AUDIO_STATE_E state)
 #endif
 
 #if (defined(ENABLE_CHAT_DISPLAY) && (ENABLE_CHAT_DISPLAY == 1)) || (defined(ENABLE_CHAT_DISPLAY2) && (ENABLE_CHAT_DISPLAY2 == 1))
+        app_display_send_msg(TY_DISPLAY_TP_EMOTION, (uint8_t *)EMOJI_ROLE_1_STATIC, strlen(EMOJI_ROLE_1_STATIC));
         app_display_send_msg(TY_DISPLAY_TP_STATUS, (uint8_t *)LISTENING, strlen(LISTENING));
 #else
         PR_NOTICE("State: LISTENING (Recording audio...)");
