@@ -236,7 +236,7 @@ static void __app_ai_audio_evt_inform_cb(AI_AUDIO_EVENT_E event, uint8_t *data, 
         PR_DEBUG("AI reply start, len: %d", len);
 #if defined(ENABLE_CHAT_DISPLAY) && (ENABLE_CHAT_DISPLAY == 1) || (defined(ENABLE_CHAT_DISPLAY2) && (ENABLE_CHAT_DISPLAY2 == 1))
         // Change emotion to HAPPY when AI starts talking
-        sg_emoji = EMOJI_HAPPY;
+        sg_emoji = EMOJI_ROLE_1;
         app_display_send_msg(TY_DISPLAY_TP_EMOTION, (uint8_t *)sg_emoji, strlen(sg_emoji));
 #if defined(ENABLE_GUI_STREAM_AI_TEXT) && (ENABLE_GUI_STREAM_AI_TEXT == 1)
         app_display_send_msg(TY_DISPLAY_TP_ASSISTANT_MSG_STREAM_START, data, len);

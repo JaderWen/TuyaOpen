@@ -10,6 +10,7 @@
 #include <string.h>
 #include "lang_config.h"
 
+LV_IMAGE_DECLARE(gif_role_1);
 LV_IMAGE_DECLARE(gif_neutral);
 LV_IMAGE_DECLARE(gif_happy);
 LV_IMAGE_DECLARE(gif_sad);
@@ -257,7 +258,11 @@ static UI_HOME_EMOTION_T sg_home_emotion_list[] = {
     },
     {
         .emotion_str = "THINKING",
-        .emotion_gif = &gif_confused,
+        .emotion_gif = &gif_thinking,
+    },
+    {
+        .emotion_str = "ROLE_1",
+        .emotion_gif = &gif_role_1,
     },
 };
 
